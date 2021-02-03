@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <table>
+        <thead>
+            <tr>
+                <th>Vaccine</th>
+                <th>Quantity</th>
+                <th>Location<th>
+                <th>Date</th>
+                <th>Additional Notes<th>
+                <th>Reported</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for report in reports %}
+                <tr>
+                    <td>{{ report["vaccine"] }}</td>
+                    <td>{{ report["quantity"] }}</td>
+                    <td>{{ report["location"] }}</td>
+                    <td>{{ report["date"] }}</td>
+                    <td>{{ report["notes"] }}</td>
+                    <td>{{ report["timestamp"] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

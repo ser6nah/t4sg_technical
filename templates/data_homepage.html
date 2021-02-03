@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+
+    <div class="container">
+        {% if username != "Log in" %}
+            <h1 id="welcome">Welcome, {{ username }}.</h1>
+            <hr id="welcome_line">
+        {% endif %}
+
+        <div class="row">
+                <div style="line-height:300%;">
+                    <h2>Recent Public Reports</h2>
+                </div>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Vaccine</th>
+                            <th>Quantity</th>
+                            <th>Date</th>
+                            <th>Location<th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for report in reports %}
+                            <tr>
+                                <td>{{ report["vaccine"] }}</td>
+                                <td>{{ report["quantity"] }}</td>
+                                <td>{{ report["date"] }}</td>
+                                <td>{{ report["location" }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
