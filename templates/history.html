@@ -10,21 +10,21 @@
             <tr>
                 <th>Vaccine</th>
                 <th>Quantity</th>
-                <th>Location<th>
+                <th>Location</th>
                 <th>Date</th>
-                <th>Additional Notes<th>
+                <th>Additional Notes</th>
                 <th>Reported</th>
             </tr>
         </thead>
         <tbody>
             {% for report in reports %}
                 <tr>
-                    <td>{{ report["vaccine"] }}</td>
-                    <td>{{ report["quantity"] }}</td>
-                    <td>{{ report["location"] }}</td>
-                    <td>{{ report["date"] }}</td>
-                    <td>{{ report["notes"] }}</td>
-                    <td>{{ report["timestamp"] }}</td>
+                    <td>{{ report[0] }}</td>
+                    <td>{{ report[1] }}</td>
+                    <td>{{ report[2] }}</td>
+                    <td>{{ report[3] }}</td>
+                    <td>{{ report[4] }}</td>
+                    <td>{{ report[5] }}</td>
                 </tr>
             {% endfor %}
         </tbody>

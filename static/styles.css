@@ -1,0 +1,106 @@
+nav .navbar-brand
+{
+    /* size for brand */
+    font-size: xx-large;
+}
+
+#full_navbar {
+    min-height: 75px;
+    position: sticky;
+  }
+
+
+main .form-control
+{
+    /* Override Bootstrap's 100% width for form controls */
+    width: auto;
+}
+
+main
+{
+    /* Scroll horizontally as needed */
+    overflow-x: auto;
+
+    /* Center contents */
+    text-align: center;
+}
+
+/* Centers text to the left */
+.container {
+    text-align: left;
+}
+
+/* Image size */
+#bell {
+    width: 20px;
+    height: auto;
+}
+
+/* Link color */
+a {
+    color: #009CDE;
+}
+
+a:hover {
+    color: #009CDE;
+}
+/* Preserves white spaces */
+p {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+/* Makes homepage snippets without preserving white spaces */
+#snippets {
+    white-space: normal;
+}
+
+/* Remove border */
+input[readonly="readonly"] {
+    border:0px;
+}  
+
+/* Format homepage's welcome sign  */
+#welcome {
+    text-align: center;
+}
+
+#welcome_line {
+    border: 1px solid #525252;
+}
+
+div.vertical-line{
+    width: 1px; /* Line width */
+    background-color: black; /* Line color */
+    height: 100%; /* Override in-line if you want specific height. */
+    float: left; /* Causes the line to float to left of content. 
+      You can instead use position:absolute or display:inline-block
+      if this fits better with your design */
+  }
+
+/* Format text area  */
+textarea {    
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 90%
+}
+
+main table
+{
+    /* align contents to the left */
+    text-align: left;
+}
+
+th {
+    /* make table headers in white without blue background */
+    background-color: #009CDE;
+    color: white;
+}
+
+th, td {
+    /* add padding and make table wider */
+    width: 250px;
+    padding: 10px;
+}

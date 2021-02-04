@@ -58,18 +58,17 @@ def index():
         # Get logged in user's email
         email = db.execute("SELECT email FROM users WHERE id = ?", (session.get("user_id"),)).fetchone()[0]
         # Get public history in order of recency
-        recent_reports = db.execute("SELECT vaccine, quantity, location, date FROM posts WHERE id = ? ORDER BY timestamp DESC LIMIT 100", 
-                            (session.get("user_id"))).fetchall()
+        recent_reports = db.execute("SELECT vaccine, quantity, location, date, timestamp FROM posts ORDER BY timestamp DESC LIMIT 100").fetchall()
 
-        # Render homepage
+        # Render homepage with public community posts
         return render_template("data_homepage.html", email=email, reports=recent_reports)
     
 
-### Page for reporting # of vaccines delivered where and when
+### Page for reporting number of vaccines delivered where and when
 @app.route("/report", methods=["GET", "POST"])
 @login_required
 def report():
-    """Create new post"""
+    """Create new report"""
     if request.method == "POST":
         # Prepare for database insertion
         if request.form.get("notes"):
@@ -77,8 +76,8 @@ def report():
         else: 
             notes = None
 
-        # Add vaccine update to database
-        db.execute("INSERT INTO posts (user_id, vaccine, quantity, location, date, notes) VALUES(?, ?, ?, ?, ?)", 
+        # Add vaccine report to database
+        db.execute("INSERT INTO posts (user_id, vaccine, quantity, location, date, notes) VALUES(?, ?, ?, ?, ?, ?)", 
                   (session.get("user_id"), request.form.get("vaccine"), request.form.get("quantity"), 
                   request.form.get("location"), request.form.get("date"), notes)) 
 
@@ -97,15 +96,11 @@ def report():
 def history():
     """View previous reports made by user"""
     # Get history in order of recency
-    reports = db.execute("SELECT vaccine, quantity, location, date, notes, timestamp FROM posts WHERE id = ? ORDER BY timestamp DESC", (session.get("user_id"))).fetchall()
+    reports = db.execute("SELECT vaccine, quantity, location, date, notes, timestamp FROM posts WHERE user_id = ? ORDER BY timestamp DESC", 
+    (session.get("user_id"),)).fetchall()
 
     if reports is None:
         return apology("You haven't made any reports yet!")
-        
-    # # Get reports as a list of lists
-    # reports_list = [[x[2], x[3], x[4], x[5], x[6]] for x in reports]
-    # for report_list in reports_list:
-    #     trending_post[2] = db.execute("SELECT username FROM users WHERE id = ?", (trending_post[2],)).fetchall()[0]
 
     # Render history page
     return render_template("history.html", reports=reports)
